@@ -1,4 +1,5 @@
 import md5 from 'md5';
+import { totp } from 'otplib';
 import { Helpers } from './helpers';
 
 export default class UID {
@@ -46,4 +47,8 @@ export default class UID {
     return md5(JSON.stringify(res));
   };
   completeID = (): string => md5(this.generateHeaderID() + this.generateCanvasID() + this.generateWebGlID());
+
+  generateOneTimeID = (totpKey: string): string => md5(totp.generate(totpKey) + this.completeID());
+  checkOneTimeID = (currentID: string, id: string, totpKey: string): boolean =>
+    currentID == md5(totp.generate(totpKey) + id) ? true : false;
 }
