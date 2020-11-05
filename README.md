@@ -8,13 +8,30 @@ npm install uniquebrowserid
 ```
 Example usage:
 ```js
-import UID from 'uniquebrowserid'
+import UID from 'uniquebrowserid';
 
-const myid = new UID().completeID()
+const myid = new UID().completeID();
 ```
-## Future plans
-To make it easier for every developer to bind unique browser IDs to json web tokens, we want to create a front- and backend endpoint, so developers just have call a class for more security.
+### Usage with JSON Web Tokens
+Client side:
+```js
+import UID from 'uniquebrowserid';
 
-To keep yourself up to date follow me on [dev.to](https://dev.to/alexanderschau).
+const oneTimeID = new UID().generateOneTimeID("randomStringKey");
+```
+This will generate a TOTP key, which will be hashed with the unique ID of the browser. The generated ID will be valid for 30 seconds.
+
+Server side:
+```js
+import UID from 'uniquebrowserid';
+
+if ( new UID().checkOneTimeID("OneTimeID", "original ID", "randomStringKey") ){
+    //one time ID is valid
+};
+```
+This will check the send ID and returns a boolean value.
 ## Contribute
 Everyone is invited to participate in this project. Feel free to create Issues and Pull Requests 😀. A detailed contribution guide will follow in the future.
+
+---
+If you want to get the latest information on this project follow me on [dev.to](https://dev.to/alexanderschau).
