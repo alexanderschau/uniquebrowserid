@@ -1,4 +1,6 @@
 # Unique Browser ID
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/alexanderschau/uniquebrowserid)
+
 This package creates a unique ID for every browser, which you can use to bind JWTs to a clients browser. This helps to prevent token thiefs 🔒.
 > **Note**: This project is still under developement. Many features are following in future.
 ## Installation and Usage
